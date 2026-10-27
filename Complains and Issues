@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UET | Student Grievance & Damage Reporting Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap');
+        
+        body { font-family: 'Poppins', sans-serif; }
+        .royal-font { font-family: 'Playfair Display', serif; }
+        .bg-royal-blue { background-color: #002366; }
+        .text-royal-gold { color: #D4AF37; }
+        .border-royal-gold { border-color: #D4AF37; }
+        .bg-royal-gold { background-color: #D4AF37; }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        
+        .nav-transition { transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Navigation -->
+    <nav class="bg-royal-blue text-white p-4 shadow-2xl sticky top-0 z-50 border-b-4 border-royal-gold">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="bg-white p-1 rounded-full">
+                    <div class="bg-royal-blue text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">UET</div>
+                </div>
+                <h1 class="text-2xl royal-font font-bold tracking-wide">Student Support <span class="text-royal-gold">Portal</span></h1>
+            </div>
+            <div class="hidden md:flex space-x-6 font-medium">
+                <a href="#" onclick="showPage('home')" class="hover:text-royal-gold nav-transition">Home</a>
+                <a href="#" onclick="showPage('report')" class="hover:text-royal-gold nav-transition">File a Report</a>
+                <a href="#" onclick="showPage('admin')" class="bg-royal-gold text-royal-blue px-4 py-1 rounded-full hover:bg-yellow-500 transition">Admin Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <section id="home" class="page-section">
+        <div class="relative h-[80vh] flex items-center justify-center text-center text-white">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" class="w-full h-full object-cover brightness-50" alt="University Campus">
+            </div>
+            <div class="relative z-10 px-4">
+                <h2 class="text-5xl md:text-7xl royal-font mb-6">Upholding Excellence <br><span class="text-royal-gold">Through Accountability</span></h2>
+                <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto font-light">Your voice ensures a better campus. Report infrastructure damage or academic grievances instantly to the university administration.</p>
+                <button onclick="showPage('report')" class="bg-royal-gold text-royal-blue px-8 py-3 rounded-lg font-bold text-lg hover:scale-105 transition-transform shadow-lg">
+                    <i class="fa-solid fa-pen-to-square mr-2"></i> Submit a Report
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reporting Page -->
+    <section id="report" class="page-section hidden py-16 px-4">
+        <div class="max-w-3xl mx-auto glass-effect p-8 rounded-2xl shadow-2xl border-t-8 border-royal-blue">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl royal-font text-royal-blue font-bold">Reporting Form</h2>
+                <p class="text-gray-600">Please provide accurate details for faster resolution.</p>
+            </div>
+            
+            <form id="complaintForm" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Full Name</label>
+                        <input type="text" id="name" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-royal-blue outline-none" placeholder="Enter your name">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Registration Number</label>
+                        <input type="text" id="regNo" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-royal-blue outline-none" placeholder="e.g. 2021-UET-123">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold mb-2">Report Type</label>
+                    <select id="type" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-royal-blue outline-none">
+                        <option value="Infrastructure Damage">Infrastructure Damage (Broken Furniture, Lighting, etc.)</option>
+                        <option value="Academic Complaint">Academic Complaint</option>
+                        <option value="Facility Issue">Facility Issue (Water, Electricity, WiFi)</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold mb-2">Exact Location</label>
+                    <input type="text" id="location" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-royal-blue outline-none" placeholder="e.g. Block C, 2nd Floor, Lab 4">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold mb-2">Description of Issue</label>
+                    <textarea id="description" rows="4" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-royal-blue outline-none" placeholder="Describe the problem in detail..."></textarea>
+                </div>
+
+                <div class="flex items-center justify-center">
+                    <button type="submit" class="bg-royal-blue text-white px-10 py-3 rounded-lg font-bold hover:bg-blue-900 transition shadow-lg w-full md:w-auto">
+                        Submit Report <i class="fa-solid fa-paper-plane ml-2"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Admin Dashboard -->
+    <section id="admin" class="page-section hidden py-16 px-4">
+        <div class="container mx-auto">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-4xl royal-font text-royal-blue font-bold">Admin <span class="text-royal-gold">Control Panel</span></h2>
+                <button onclick="clearAllReports()" class="text-red-600 hover:text-red-800 font-semibold">
+                    <i class="fa-solid fa-trash-can"></i> Clear All Data
+                </button>
+            </div>
+
+            <div class="overflow-x-auto bg-white rounded-xl shadow-xl border border-gray-200">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-royal-blue text-white">
+                        <tr>
+                            <th class="p-4 border-b border-royal-gold">ID</th>
+                            <th class="p-4 border-b border-royal-gold">Student</th>
+                            <th class="p-4 border-b border-royal-gold">Type</th>
+                            <th class="p-4 border-b border-royal-gold">Location</th>
+                            <th class="p-4 border-b border-royal-gold">Description</th>
+                            <th class="p-4 border-b border-royal-gold">Status</th>
+                            <th class="p-4 border-b border-royal-gold">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminTableBody" class="divide-y divide-gray-200">
+                        <!-- Data will be injected here -->
+                    </tbody>
+                </table>
+                <div id="noData" class="p-10 text-center text-gray-500 hidden">
+                    No reports found in the system.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-royal-blue text-white py-6 text-center border-t-4 border-royal-gold mt-20">
+        <p>&copy; 2023 University of Engineering and Technology. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Navigation Logic
+        function showPage(pageId) {
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(pageId).classList.remove('hidden');
+            window.scrollTo(0,0);
+            if(pageId === 'admin') loadReports();
+        }
+
+        // Data Handling
+        const complaintForm = document.getElementById('complaintForm');
+        
+        complaintForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const report = {
+                id: Date.now(),
+                name: document.getElementById('name').value,
+                regNo: document.getElementById('regNo').value,
+                type: document.getElementById('type').value,
+                location: document.getElementById('location').value,
+                description: document.getElementById('description').value,
+                status: 'Pending'
+            };
+
+            // Save to LocalStorage
+            let reports = JSON.parse(localStorage.getItem('uet_reports')) || [];
+            reports.push(report);
+            localStorage.setItem('uet_reports', JSON.stringify(reports));
+
+            alert('Your report has been submitted successfully to the UET Administration!');
+            complaintForm.reset();
+            showPage('home');
+        });
+
+        function loadReports() {
+            const reports = JSON.parse(localStorage.getItem('uet_reports')) || [];
+            const tableBody = document.getElementById('adminTableBody');
+            const noData = document.getElementById('noData');
+            
+            tableBody.innerHTML = '';
+            
+            if (reports.length === 0) {
+                noData.classList.remove('hidden');
+                return;
+            }
+            
+            noData.classList.add('hidden');
+            
+            reports.forEach((report, index) => {
+                const row = `
+                    <tr class="hover:bg-gray-50 transition">
+                        <td class="p-4 text-sm font-mono">#${report.id.toString().slice(-5)}</td>
+                        <td class="p-4 font-medium">${report.name}<br><span class="text-xs text-gray-500">${report.regNo}</span></td>
+                        <td class="p-4"><span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold">${report.type}</span></td>
+                        <td class="p-4 text-sm">${report.location}</td>
+                        <td class="p-4 text-sm text-gray-600">${report.description}</td>
+                        <td class="p-4">
+                            <select onchange="updateStatus(${report.id}, this.value)" class="p-1 border rounded text-sm ${report.status === 'Resolved' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'}">
+                                <option value="Pending" ${report.status === 'Pending' ? 'selected' : ''}>Pending</option>
+                                <option value="In Progress" ${report.status === 'In Progress' ? 'selected' : ''}>In Progress</option>
+                                <option value="Resolved" ${report.status === 'Resolved' ? 'selected' : ''}>Resolved</option>
+                            </select>
+                        </td>
+                        <td class="p-4">
+                            <button onclick="deleteReport(${report.id})" class="text-red-500 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        function updateStatus(id, newStatus) {
+            let reports = JSON.parse(localStorage.getItem('uet_reports'));
+            reports = reports.map(r => r.id === id ? {...r, status: newStatus} : r);
+            localStorage.setItem('uet_reports', JSON.stringify(reports));
+            loadReports();
+        }
+
+        function deleteReport(id) {
+            if(confirm('Are you sure you want to remove this report?')) {
+                let reports = JSON.parse(localStorage.getItem('uet_reports'));
+                reports = reports.filter(r => r.id !== id);
+                localStorage.setItem('uet_reports', JSON.stringify(reports));
+                loadReports();
+            }
+        }
+
+        function clearAllReports() {
+            if(confirm('DANGER: This will wipe all complaints from the system. Continue?')) {
+                localStorage.removeItem('uet_reports');
+                loadReports();
+            }
+        }
+    </script>
+</body>
+</html>
